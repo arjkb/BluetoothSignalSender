@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity  implements GenericSenderFragment.OnFragmentInteractionListener {
+public class MainActivity extends Activity {
 
     final String MYLOGTAG = "BT_SignalSender";
     Button genericButton;
@@ -60,10 +60,5 @@ public class MainActivity extends Activity  implements GenericSenderFragment.OnF
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        Log.v(MYLOGTAG, "Fragment interaction!");
     }
 }
