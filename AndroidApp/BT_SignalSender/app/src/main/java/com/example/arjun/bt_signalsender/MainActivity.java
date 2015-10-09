@@ -2,15 +2,30 @@ package com.example.arjun.bt_signalsender;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
+
+    final String MYLOGTAG = "BT_SignalSender";
+    Button genericButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        genericButton = (Button) findViewById(R.id.gen_button);
+
+        genericButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Log.v(MYLOGTAG, "Button Clicked!");
+            }
+        });
     }
 
 
