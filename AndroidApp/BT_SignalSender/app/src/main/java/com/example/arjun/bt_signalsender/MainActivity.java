@@ -1,6 +1,10 @@
 package com.example.arjun.bt_signalsender;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -8,11 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity  implements GenericSenderFragment.OnFragmentInteractionListener {
 
     final String MYLOGTAG = "BT_SignalSender";
     Button genericButton;
 
+
+    Fragment genericFragment = new GenericSenderFragment();
+    FragmentManager fragmentManager = getFragmentManager();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                Log.v(MYLOGTAG, "Button Clicked!");
+
+                transaction.add(R.id.fragment, genericFragment);
+                transaction.commit();
             }
         });
     }
@@ -49,5 +60,10 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Log.v(MYLOGTAG, "Fragment interaction!");
     }
 }
