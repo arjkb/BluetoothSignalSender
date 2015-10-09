@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class GenericSenderFragment extends Fragment {
+
+    final String MYLOGTAG = "BT_SignalSender";
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -80,8 +84,9 @@ public class GenericSenderFragment extends Fragment {
         try {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+         //   throw new ClassCastException(activity.toString()
+         // + " must implement OnFragmentInteractionListener");
+            Log.v(MYLOGTAG, "ClassCastException: OnFragmentInteractionListener not implemented!");
         }
     }
 
