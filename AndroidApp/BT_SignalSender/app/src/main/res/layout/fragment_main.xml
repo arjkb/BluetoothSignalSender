@@ -9,8 +9,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:text="Generic Button"
+        android:id="@+id/gen_button"
         android:layout_marginStart="30dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -18,8 +18,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:text="Special Button"
+        android:id="@+id/spl_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp" />
