@@ -15,7 +15,7 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 
     final String MYLOGTAG = "BT_SignalSender";
-    Button genericButton;
+    Button genericButton; boolean genericButtonStatus;
 
 
     Fragment genericFragment = new GenericSenderFragment();
@@ -28,13 +28,20 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         genericButton = (Button) findViewById(R.id.gen_button);
 
+        genericButtonStatus = false;
+
+
         genericButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                Log.v(MYLOGTAG, "Button Clicked!");
 
-                transaction.add(R.id.fragment, genericFragment);
-                transaction.commit();
+                if(!genericButtonStatus)    {
+                    transaction.add(R.id.fragment, genericFragment);
+                    transaction.commit();
+                    genericButtonStatus = true;
+                }
+
             }
         });
     }
