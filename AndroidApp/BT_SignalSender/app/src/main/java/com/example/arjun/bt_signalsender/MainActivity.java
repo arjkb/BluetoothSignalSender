@@ -44,10 +44,22 @@ public class MainActivity extends Activity {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Log.v(MYLOGTAG, "Generic Button Clicked!");
 
+
                 if(!genericButtonStatus)    {
-                    transaction.add(R.id.fragment, genericFragment);
+
+                    /*  if specialFragment is present, replace it with genericFragment
+                     *  else add genericFragment straightaway
+                     */
+                    if( specialButtonStatus )   {
+                        transaction.replace(R.id.fragment, genericFragment);
+                    } else  {
+                        transaction.add(R.id.fragment, genericFragment);
+                    }
+
                     transaction.commit();
+
                     genericButtonStatus = true;
+                    specialButtonStatus = false;
                 }
 
             }
@@ -61,8 +73,19 @@ public class MainActivity extends Activity {
                 Log.v(MYLOGTAG, "Special Button Clicked!");
 
                 if(!specialButtonStatus)    {
-                    transaction.add(R.id.fragment, specialFragment);
+
+                    /*  if genericFragment is present, replace it with specialFragment
+                     *  else add specialFragment straightaway
+                     */
+                    if(genericButtonStatus) {
+                        transaction.replace(R.id.fragment, specialFragment);
+                    } else  {
+                        transaction.add(R.id.fragment, specialFragment);
+                    }
+
                     transaction.commit();
+
+                    genericButtonStatus = false;
                     specialButtonStatus = true;
                 }
 
