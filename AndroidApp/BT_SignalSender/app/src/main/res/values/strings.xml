@@ -8,5 +8,5 @@
     <string name="hello_generic_fragment">This is GenericFragment</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_special_fragment">This is SpecialFragment</string>
 </resources>
