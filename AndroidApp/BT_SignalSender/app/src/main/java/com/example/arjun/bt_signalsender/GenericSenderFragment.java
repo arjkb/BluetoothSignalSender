@@ -86,7 +86,7 @@ public class GenericSenderFragment extends Fragment {
         } catch (ClassCastException e) {
          //   throw new ClassCastException(activity.toString()
          // + " must implement OnFragmentInteractionListener");
-            Log.v(MYLOGTAG, "ClassCastException: OnFragmentInteractionListener not implemented!");
+            Log.v(MYLOGTAG, "ClassCastException: (Generic) OnFragmentInteractionListener not implemented!");
         }
     }
 
