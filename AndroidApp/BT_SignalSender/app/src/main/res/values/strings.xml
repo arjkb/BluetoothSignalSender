@@ -9,4 +9,11 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_special_fragment">This is SpecialFragment</string>
+
+    <!-- BtPromptDialogFragment  -->
+    <string name="btprompt_title"> Pair Bluetooth Device </string>
+    <string name="btprompt_message"> Connect and pair with bluetooth-device now? </string>
+    <string name="btprompt_positive"> Pair </string>
+    <string name="btprompt_negative"> Cancel </string>
+
 </resources>
