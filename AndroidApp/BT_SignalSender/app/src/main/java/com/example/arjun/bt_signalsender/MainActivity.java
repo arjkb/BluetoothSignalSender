@@ -1,6 +1,7 @@
 package com.example.arjun.bt_signalsender;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        showBtPrompt();
     }
 
 
@@ -37,5 +40,10 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showBtPrompt()  {
+        DialogFragment dialog = new BtPromptDialog();
+        dialog.show(getFragmentManager(), "btprompt");
     }
 }
