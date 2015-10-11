@@ -11,20 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+
 public class MainActivity extends Activity {
 
     final String MYLOGTAG = "BT_SignalSender";
 
-    Button genericButton;
-    boolean genericButtonStatus;
-
-    Button specialButton;
-    boolean specialButtonStatus;
-
-    Fragment genericFragment = new GenericSenderFragment();
-    Fragment specialFragment = new SpecialSenderFragment();
-
-    FragmentManager fragmentManager = getFragmentManager();
+//    Button genericButton;
+//    boolean genericButtonStatus;
+//
+//    Button specialButton;
+//    boolean specialButtonStatus;
+//
+//    Fragment genericFragment = new GenericSenderFragment();
+//    Fragment specialFragment = new SpecialSenderFragment();
+//
+//    FragmentManager fragmentManager = getFragmentManager();
 
 
     @Override
@@ -32,65 +33,66 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        genericButton = (Button) findViewById(R.id.gen_button);
-        specialButton = (Button) findViewById(R.id.spl_button);
+//        genericButton = (Button) findViewById(R.id.gen_button);
+//        specialButton = (Button) findViewById(R.id.spl_button);
+//
+//        genericButtonStatus = false;
+//        specialButtonStatus = false;
+//
+//        genericButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                Log.v(MYLOGTAG, "Generic Button Clicked!");
+//
+//
+//                if(!genericButtonStatus)    {
+//
+//                    /*  if specialFragment is present, replace it with genericFragment
+//                     *  else add genericFragment straightaway
+//                     */
+//                    if( specialButtonStatus )   {
+//                        transaction.replace(R.id.fragment, genericFragment);
+//                    } else  {
+//                        transaction.add(R.id.fragment, genericFragment);
+//                    }
+//
+//                    transaction.commit();
+//
+//                    genericButtonStatus = true;
+//                    specialButtonStatus = false;
+//                }
+//
+//            }
+//        });
+//
+//        specialButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//
+//                Log.v(MYLOGTAG, "Special Button Clicked!");
+//
+//                if(!specialButtonStatus)    {
+//
+//                    /*  if genericFragment is present, replace it with specialFragment
+//                     *  else add specialFragment straightaway
+//                     */
+//                    if(genericButtonStatus) {
+//                        transaction.replace(R.id.fragment, specialFragment);
+//                    } else  {
+//                        transaction.add(R.id.fragment, specialFragment);
+//                    }
+//
+//                    transaction.commit();
+//
+//                    genericButtonStatus = false;
+//                    specialButtonStatus = true;
+//                }
+//
+//            }
+//        });
 
-        genericButtonStatus = false;
-        specialButtonStatus = false;
-
-        genericButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Log.v(MYLOGTAG, "Generic Button Clicked!");
-
-
-                if(!genericButtonStatus)    {
-
-                    /*  if specialFragment is present, replace it with genericFragment
-                     *  else add genericFragment straightaway
-                     */
-                    if( specialButtonStatus )   {
-                        transaction.replace(R.id.fragment, genericFragment);
-                    } else  {
-                        transaction.add(R.id.fragment, genericFragment);
-                    }
-
-                    transaction.commit();
-
-                    genericButtonStatus = true;
-                    specialButtonStatus = false;
-                }
-
-            }
-        });
-
-        specialButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                Log.v(MYLOGTAG, "Special Button Clicked!");
-
-                if(!specialButtonStatus)    {
-
-                    /*  if genericFragment is present, replace it with specialFragment
-                     *  else add specialFragment straightaway
-                     */
-                    if(genericButtonStatus) {
-                        transaction.replace(R.id.fragment, specialFragment);
-                    } else  {
-                        transaction.add(R.id.fragment, specialFragment);
-                    }
-
-                    transaction.commit();
-
-                    genericButtonStatus = false;
-                    specialButtonStatus = true;
-                }
-
-            }
-        });
     }
 
 
