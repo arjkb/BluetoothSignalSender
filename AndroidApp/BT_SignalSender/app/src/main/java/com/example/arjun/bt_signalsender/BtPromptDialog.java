@@ -1,5 +1,6 @@
 package com.example.arjun.bt_signalsender;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -12,6 +13,28 @@ import android.util.Log;
  */
 public class BtPromptDialog extends DialogFragment {
     final String MYLOGTAG = "BT_SignalSender";
+
+    public interface BtPromptListener   {
+        public void onPositiveClick(DialogFragment dialog);
+        public void onNegativeClick(DialogFragment dialog);
+    }
+
+    BtPromptListener mListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mListener = (BtPromptListener) activity;
+        } catch (ClassCastException E)  {
+            Log.v(MYLOGTAG, "BtPromptListener: ClassCaseException");
+
+            throw new ClassCastException(activity.toString()
+                    + " must implement BtPromptListener");
+        }
+    }
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -26,6 +49,7 @@ public class BtPromptDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.v(MYLOGTAG, "BtPromptDialog: Positive button clicked!");
+                        mListener.onPositiveClick(BtPromptDialog.this);
 
                     }
                 })
@@ -33,6 +57,7 @@ public class BtPromptDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.v(MYLOGTAG, "BtPromptDialog: Negative button clicked!");
+                        mListener.onNegativeClick(BtPromptDialog.this);
                     }
                 });
         //return super.onCreateDialog(savedInstanceState);
