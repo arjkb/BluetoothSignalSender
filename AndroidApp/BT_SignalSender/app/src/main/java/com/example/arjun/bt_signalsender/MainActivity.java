@@ -3,11 +3,12 @@ package com.example.arjun.bt_signalsender;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements BtPromptDialog.BtPromptListener {
 
     final String MYLOGTAG = "BT_SignalSender";
 
@@ -46,4 +47,17 @@ public class MainActivity extends Activity {
         DialogFragment dialog = new BtPromptDialog();
         dialog.show(getFragmentManager(), "btprompt");
     }
+
+    /* Implement BtPromptDialog.BtPromptListener */
+    @Override
+    public void onPositiveClick(DialogFragment dialog) {
+        Log.v(MYLOGTAG, "MainActivity: Recording positive click!");
+
+    }
+
+    @Override
+    public void onNegativeClick(DialogFragment dialog) {
+        Log.v(MYLOGTAG, "MainActivity: Recording negative click!");
+    }
+
 }
