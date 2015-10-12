@@ -13,11 +13,15 @@ import android.view.MenuItem;
 public class MainActivity extends Activity implements BtPromptDialog.BtPromptListener {
 
     final String MYLOGTAG = "BT_SignalSender";
+    Intent openBtSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        openBtSettings = new Intent();
+        openBtSettings.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
 
         showBtPrompt();
     }
@@ -40,7 +44,12 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if( id == R.id.action_pair) {
+            Log.v(MYLOGTAG, "MainActivity: onOptionsItemSelected: Pair action selected!");
+            showBtPrompt();
+            return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -56,8 +65,6 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
         Log.v(MYLOGTAG, "MainActivity: Recording positive click!");
 
         //open up bluetooth settings as a new intent
-        Intent openBtSettings = new Intent();
-        openBtSettings.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
         startActivity(openBtSettings);
 
         Log.v(MYLOGTAG, "MainActivity: Returned after startActivity(openBtIntent)!");

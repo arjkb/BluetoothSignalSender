@@ -2,6 +2,7 @@
     <string name="app_name">BT_SignalSender</string>
     <string name="hello_world">Hello world!</string>
     <string name="interesting">This should be interesting!</string>
+    <string name="action_pair">Pair</string>
     <string name="action_settings">Settings</string>
 
 <!-- Dummy text for generic and special fragments -->
