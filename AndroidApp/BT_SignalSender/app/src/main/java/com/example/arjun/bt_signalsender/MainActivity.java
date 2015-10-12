@@ -2,7 +2,9 @@ package com.example.arjun.bt_signalsender;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +55,12 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
     public void onPositiveClick(DialogFragment dialog) {
         Log.v(MYLOGTAG, "MainActivity: Recording positive click!");
 
+        //open up bluetooth settings as a new intent
+        Intent openBtSettings = new Intent();
+        openBtSettings.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+        startActivity(openBtSettings);
+
+        Log.v(MYLOGTAG, "MainActivity: Returned after startActivity(openBtIntent)!");
     }
 
     @Override
