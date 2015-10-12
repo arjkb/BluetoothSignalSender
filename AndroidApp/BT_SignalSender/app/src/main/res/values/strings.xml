@@ -4,10 +4,8 @@
     <string name="interesting">This should be interesting!</string>
     <string name="action_settings">Settings</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+<!-- Dummy text for generic and special fragments -->
     <string name="hello_generic_fragment">This is GenericFragment</string>
-
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_special_fragment">This is SpecialFragment</string>
 
     <!-- BtPromptDialogFragment  -->
