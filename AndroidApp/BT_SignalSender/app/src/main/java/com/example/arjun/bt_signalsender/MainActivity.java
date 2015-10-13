@@ -2,7 +2,11 @@ package com.example.arjun.bt_signalsender;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -15,6 +19,24 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
     final String MYLOGTAG = "BT_SignalSender";
     Intent openBtSettings;
 
+
+    private BroadcastReceiver btReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if(BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+                Log.v(MYLOGTAG, " BroadcastReceiver: Connected with a bluetooth device");
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.v(MYLOGTAG, " BroadcastReceiver: " + device.getName() + " " + device.getAddress());
+            }
+        }
+    };
+
+    IntentFilter filter;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +45,17 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
         openBtSettings = new Intent();
         openBtSettings.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
 
+        filter = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
+        registerReceiver(btReceiver, filter);
+
         showBtPrompt();
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
