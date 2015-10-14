@@ -4,7 +4,7 @@
     tools:context="com.example.arjun.bt_signalsender.SpecialSenderFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="420dp"
+    <TextView android:layout_width="match_parent" android:layout_height="375dp"
         android:text="@string/hello_special_fragment"
         android:layout_gravity="center_horizontal|bottom" />
 
