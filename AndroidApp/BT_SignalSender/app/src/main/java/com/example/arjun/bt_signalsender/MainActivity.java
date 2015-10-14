@@ -12,12 +12,16 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity implements BtPromptDialog.BtPromptListener {
 
     final String MYLOGTAG = "BT_SignalSender";
     Intent openBtSettings;
+
+    BluetoothDevice btDevice;
+    IntentFilter filter;
 
 
     private BroadcastReceiver btReceiver = new BroadcastReceiver() {
@@ -27,14 +31,13 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
 
             if(BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
                 Log.v(MYLOGTAG, " BroadcastReceiver: Connected with a bluetooth device");
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.v(MYLOGTAG, " BroadcastReceiver: " + device.getName() + " " + device.getAddress());
+                btDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.v(MYLOGTAG, " BroadcastReceiver: " + btDevice.getName() + " " + btDevice.getAddress());
+
+                dispBtDeviceData();
             }
         }
     };
-
-    IntentFilter filter;
-
 
 
     @Override
@@ -89,6 +92,14 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
         dialog.show(getFragmentManager(), "btprompt");
     }
 
+    public void dispBtDeviceData()  {
+        TextView btNameTV = (TextView) findViewById(R.id.btNameTextView);
+        TextView btMacTV = (TextView) findViewById(R.id.btMacTextView);
+
+        btNameTV.setText(btDevice.getName());
+        btMacTV.setText(btDevice.getAddress());
+    }
+
     /* Implement BtPromptDialog.BtPromptListener */
     @Override
     public void onPositiveClick(DialogFragment dialog) {
@@ -104,5 +115,7 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
     public void onNegativeClick(DialogFragment dialog) {
         Log.v(MYLOGTAG, "MainActivity: Recording negative click!");
     }
+
+
 
 }
