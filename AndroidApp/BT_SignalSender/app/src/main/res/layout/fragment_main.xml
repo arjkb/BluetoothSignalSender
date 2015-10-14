@@ -24,5 +24,23 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Bluetooth Device Address"
+        android:id="@+id/btNameTextView"
+        android:layout_below="@+id/btMacTextView"
+        android:layout_alignStart="@+id/btMacTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/btMacTextView"
+        android:layout_alignStart="@+id/gen_button"
+        android:layout_below="@+id/gen_button"
+        android:text="Bluetooth Device Name" />
+
 
 </RelativeLayout>
