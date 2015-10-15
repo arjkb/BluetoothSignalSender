@@ -3,6 +3,7 @@ package com.example.arjun.bt_signalsender;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.UUID;
 
 
 public class MainActivity extends Activity implements BtPromptDialog.BtPromptListener {
@@ -35,6 +39,8 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
                 Log.v(MYLOGTAG, " BroadcastReceiver: " + btDevice.getName() + " " + btDevice.getAddress());
 
                 dispBtDeviceData();
+
+                new ConnectThread(btDevice);
             }
         }
     };
@@ -116,6 +122,56 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
         Log.v(MYLOGTAG, "MainActivity: Recording negative click!");
     }
 
+}
 
+class ConnectThread extends Thread  {
+    private final BluetoothSocket btSocket;
+    private final BluetoothDevice btDevice;
+
+    final String MYLOGTAG = "BT_SignalSender";
+
+    public ConnectThread(BluetoothDevice device)    {
+        BluetoothSocket temp = null;
+
+        try {
+            temp = device.createRfcommSocketToServiceRecord(UUID.randomUUID());
+        } catch (Exception E) {
+            Log.v(MYLOGTAG, " ConnectThread: Exception " + E);
+
+        }
+
+        btDevice = device;
+        btSocket = temp;
+
+        start(); //start the thread
+    }
+
+    @Override
+    public void run()   {
+        try {
+            btSocket.connect();
+        } catch (Exception E)   {
+
+            Log.v(MYLOGTAG, " ConnectThread: Unable to connect: " + E);
+            try {
+                btSocket.close();
+            } catch (Exception E2)   {
+                Log.v(MYLOGTAG, " ConnectThread: Unable to close: " + E2);
+            }
+
+            return;
+        }
+
+        Log.v(MYLOGTAG, " ConnectThread: Connected to remote device via socket!");
+        // call thread to manage connection here. Pass socket as argument
+    }
+
+    public void cancel()    {
+        try {
+            btSocket.close();
+        } catch (Exception E)   {
+            Log.v(MYLOGTAG, " ConnectThread: Cancel: Unable to close: " + E);
+        }
+    }
 
 }
