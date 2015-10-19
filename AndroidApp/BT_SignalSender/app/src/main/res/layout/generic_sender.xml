@@ -6,9 +6,27 @@
     tools:context="com.example.arjun.bt_signalsender.GenericSenderFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="375dp"
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:id="@+id/sendButton"
+        android:layout_gravity="right|center_vertical" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="31dp"
         android:text="@string/hello_generic_fragment"
         android:id="@+id/generic_fragment"
         android:layout_gravity="center_horizontal|bottom" />
+
+    <EditText
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_gravity="left|center_vertical"
+        android:maxLength="1"
+        android:hint="@string/ed_generic_fragment_hint"
+        android:backgroundTint="#003bff" />
 
 </FrameLayout>
