@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send"
-        android:id="@+id/sendButton"
+        android:id="@+id/send_button"
         android:layout_gravity="right|center_vertical" />
 
     <TextView android:layout_width="match_parent" android:layout_height="31dp"
