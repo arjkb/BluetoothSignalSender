@@ -9,6 +9,8 @@
     <string name="hello_generic_fragment">This is GenericFragment</string>
     <string name="hello_special_fragment">This is SpecialFragment</string>
 
+    <string name = "ed_generic_fragment_hint"> Enter a single character </string>
+
     <!-- BtPromptDialogFragment  -->
     <string name="btprompt_title"> Pair Bluetooth Device </string>
     <string name="btprompt_message"> Connect and pair with bluetooth-device now? </string>
