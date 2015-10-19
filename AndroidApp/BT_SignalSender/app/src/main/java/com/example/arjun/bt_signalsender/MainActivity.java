@@ -13,13 +13,17 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.UUID;
 
 
-public class MainActivity extends Activity implements BtPromptDialog.BtPromptListener {
+public class MainActivity extends Activity implements BtPromptDialog.BtPromptListener,
+                                GenericSenderFragment.GenericFragmentInteractionListener  {
+
+
 
     final String MYLOGTAG = "BT_SignalSender";
     Intent openBtSettings;
@@ -122,6 +126,11 @@ public class MainActivity extends Activity implements BtPromptDialog.BtPromptLis
         Log.v(MYLOGTAG, "MainActivity: Recording negative click!");
     }
 
+    @Override
+    public void onSendPress(View v) {
+        //Method of GenericSenderFragment
+        Log.v(MYLOGTAG, " MainActivity: Inside onSendPress() ");
+    }
 }
 
 class ConnectThread extends Thread  {

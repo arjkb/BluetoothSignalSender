@@ -8,12 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GenericSenderFragment.OnFragmentInteractionListener} interface
+ * {@link com.example.arjun.bt_signalsender.GenericSenderFragment.GenericFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link GenericSenderFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -31,7 +32,10 @@ public class GenericSenderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private GenericFragmentInteractionListener mListener;
+
+    protected Button sendButton;
+    private View rootView;
 
     /**
      * Use this factory method to create a new instance of
@@ -68,25 +72,53 @@ public class GenericSenderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.generic_sender, container, false);
+
+        //return inflater.inflate(R.layout.generic_sender, container, false);
+
+        rootView = inflater.inflate(R.layout.generic_sender, container, false);
+
+        sendButton = (Button) rootView.findViewById(R.id.send_button);
+
+        return rootView;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mListener.onSendPress(v);
+                } catch (NullPointerException E)    {
+                    Log.v(MYLOGTAG, " SendButton: onClick: NullPointerException " + E);
+                } catch (Exception E)   {
+                    Log.v(MYLOGTAG, " SendButton: onClick: Exception " + E);
+                }
+            }
+        });
+    }
+
+/*
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+      //      mListener.onFragmentInteraction(uri);
         }
     }
+*/
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (GenericFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
          //   throw new ClassCastException(activity.toString()
          // + " must implement OnFragmentInteractionListener");
-            Log.v(MYLOGTAG, "ClassCastException: (Generic) OnFragmentInteractionListener not implemented!");
+            Log.v(MYLOGTAG, "ClassCastException: (Generic) GenericFragmentInteractionListener not implemented!");
         }
     }
 
@@ -106,9 +138,9 @@ public class GenericSenderFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface GenericFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+//        public void onFragmentInteraction(Uri uri);
+        void onSendPress(View v);
     }
-
 }
