@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.lang.Thread;
 import java.util.UUID;
 
 
@@ -182,5 +183,10 @@ class ConnectThread extends Thread  {
             Log.v(MYLOGTAG, " ConnectThread: Cancel: Unable to close: " + E);
         }
     }
+
+}
+
+
+class ConnectedThread extends Thread    {
 
 }
